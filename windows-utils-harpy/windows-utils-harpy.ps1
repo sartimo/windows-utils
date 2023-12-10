@@ -356,12 +356,12 @@ function Command-Init {
         Write-Host "initializing Harpy structure in current path"
     }
 
-
+    New-Item -ItemType Directory -Path $Directory -Force
 
     # creating all default files
-    New-Item "$Directory\index.md" -ItemType File
-    New-Item "$Directory\header.html" -ItemType File
-    New-Item "$Directory\footer.html" -ItemType File
+    New-Item -ItemType File -Path "$Directory\index.md"
+    New-Item -ItemType File -Path "$Directory\header.html" 
+    New-Item -ItemType File -Path "$Directory\footer.html" 
 
     # set default content for the files
     Set-Content "$Directory\index.md" $DefaultIndexMD
