@@ -1,15 +1,20 @@
-<#
-.SYNOPSIS
-An example of how to next commands.
 
-.DESCRIPTION
-USAGE
-    .\4-nest.ps1 <command>
 
-COMMANDS
-    speak       speak some text
-    logs        view logs
-#>
+#################################### app parameters ############################################################
+param(
+    [Parameter(Position=0)]
+    [ValidateSet("init", "build", "serve")]
+    [string]$Command,
+
+    [Parameter(Position=1, ValueFromRemainingArguments=$true)]
+    $Rest
+)
+
+if (!$Command) {
+    Get-Help $PSCommandPath
+    exit
+}
+
 #################################### default content for index.md ############################################################
 $DefaultIndexMD=@"
 # harpy
@@ -337,21 +342,6 @@ behaviour, use the `-n` flag when executing smu to stricly escape the HTML
 tags.
 "@
 
-#################################### app parameters ############################################################
-param(
-    [Parameter(Position=0)]
-    [ValidateSet("init", "build", "serve")]
-    [string]$Command,
-
-    [Parameter(Position=1, ValueFromRemainingArguments=$true)]
-    $Rest
-)
-
-if (!$Command) {
-    Get-Help $PSCommandPath
-    exit
-}
-
 ################################### function for initializing data structure ##################################
 function Command-Init {
     param (
@@ -366,10 +356,12 @@ function Command-Init {
         Write-Host "initializing Harpy structure in current path"
     }
 
+
+
     # creating all default files
-    New-Item "$Directory\index.md"
-    New-Item "$Directory\header.html"
-    New-Item "$Directory\footer.html"
+    New-Item "$Directory\index.md" -ItemType File
+    New-Item "$Directory\header.html" -ItemType File
+    New-Item "$Directory\footer.html" -ItemType File
 
     # set default content for the files
     Set-Content "$Directory\index.md" $DefaultIndexMD
