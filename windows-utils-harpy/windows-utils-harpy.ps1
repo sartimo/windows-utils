@@ -8,7 +8,7 @@ Function Harpy {
     .Example 
         Harpy         
         
-    URL: https://github.com/sartimo/windows-utils
-    CMD: powershell.exe -ExecutionPolicy Bypass -File 
+    URL: https://github.com/sartimo/windows-utils/blob/main/windows-utils-harpy/windows-utils-harpy.ps1
+    CMD: powershell.exe -ExecutionPolicy Bypass -File https://github.com/sartimo/windows-utils/blob/main/windows-utils-harpy/windows-utils-harpy.ps1
 #>
 }
