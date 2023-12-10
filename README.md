@@ -1,2 +1,3 @@
-# bypassGPO
-simple script to bypass group policies
+# windows-utils
+exotic bazaar of windows utilities
+
